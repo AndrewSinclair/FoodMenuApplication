@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#lein dependencies
+lein deps
+
+#postgres setup
+dropdb -U postgres food-app
+createdb -U postgres food-app
+psql -U postgres -c "create user food-app with password 'food-app';"
+psql -U postgres -c "alter database food-app owner to food-app;"
+psql -U food-app -d food-app -f doc/schema.sql
