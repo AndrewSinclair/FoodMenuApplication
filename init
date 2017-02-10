@@ -4,8 +4,8 @@
 lein deps
 
 #postgres setup
-dropdb -U postgres food-app
-createdb -U postgres food-app
-psql -U postgres -c "create user food-app with password 'food-app';"
-psql -U postgres -c "alter database food-app owner to food-app;"
-psql -U food-app -d food-app -f doc/schema.sql
+dropdb foodapp
+createdb foodapp
+psql -d foodapp -c "create user foodapp with password 'foodapp';"
+psql -d foodapp -c "alter database foodapp owner to foodapp;"
+psql -U foodapp -d foodapp -f doc/schema.sql

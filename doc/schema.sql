@@ -1,6 +1,6 @@
 drop table if exists menu;
 create table menu (
-    id integer not null primary key auto_increment,
+    id SERIAL not null primary key,
     title varchar(255),
-	body varchar(max)
+    body varchar(255)
 );
