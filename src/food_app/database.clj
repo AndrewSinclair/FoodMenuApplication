@@ -1,22 +1,21 @@
-(ns food-app.d
-  (:require [clojure.java.jdbc :refer all]))
+(ns food-app.database
+  (:require [clojure.java.jdbc :refer :all]))
 
 
 (let [db-host "localhost"
       db-port 5432
-      db-name "food-app"]
+      db-name "foodapp"]
 
   (def db {:classname "org.postgresql.Driver" ; must be in classpath
            :subprotocol "postgresql"
            :subname (str "//" db-host ":" db-port "/" db-name)
            ; Any additional keys are passed to the driver
            ; as driver-specific properties.
-           :user "food-app"
-           :password "food-app"}))
+           :user "foodapp"
+           :password "foodapp"}))
 
-(defn get-menus []
-  (with-connection db 
-     (with-query-results rs ["select * from menu"] 
-       ; rs will be a sequence of maps, 
-       ; one for each record in the result set. 
-       (dorun (map #(println (:title %)) rs)))))
+(defn get-menu-titles []
+  (with-db-connection [c db] 
+     (->>
+       (query c ["select * from menu"])
+       (map :title))))

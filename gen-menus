@@ -1,4 +1,3 @@
 #!/bin/bash
 
-lein exec -p import-test-data.clj 
-
+psql -U foodapp -d foodapp -f doc/import-test-data.sql
