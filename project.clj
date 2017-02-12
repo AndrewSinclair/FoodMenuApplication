@@ -6,6 +6,7 @@
                  [compojure "1.5.1"]
                  [ring/ring-defaults "0.2.1"]
                  [ring/ring-json "0.4.0"]
+                 [ring.middleware.logger "0.5.0"]
                  [org.clojure/java.jdbc "0.7.0-alpha1"]
                  [postgresql "9.1-901.jdbc4"]
                  [me.raynes/conch "0.8.0"]]
