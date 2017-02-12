@@ -1,7 +1,0 @@
-#!/bin/bash
-
-#postgres setup
-dropdb foodapp
-createdb foodapp
-psql -d foodapp -c "create user foodapp with password 'foodapp';"
-psql -d foodapp -c "alter database foodapp owner to foodapp;"

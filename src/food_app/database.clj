@@ -2,7 +2,8 @@
   (:require [clojure.java.jdbc :refer :all]))
 
 
-(let [db-host "localhost"
+(let [db-host (or (System/getenv "DATABASE_URL") ;"172.18.0.2"
+                                 "localhost")
       db-port 5432
       db-name "foodapp"]
 

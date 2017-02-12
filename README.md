@@ -17,17 +17,26 @@ To bootstrap the dev environment, run:
 
 To preload the dev database, run:
 
-    gen-menu
+    gen-menus
 
 
 ## Running
 
 To start a web server for the application, run:
 
-    lein ring server
+    dev
 
 
 And connect to `http://localhost:3000`
+
+## Docker
+
+If you have Docker installed and wish to use that to run the application, run:
+
+    docker-compose build
+    docker-compose up
+
+
 
 ## License
 

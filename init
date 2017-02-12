@@ -5,4 +5,4 @@ dropdb foodapp
 createdb foodapp
 psql -d foodapp -c "create user foodapp with password 'foodapp';"
 psql -d foodapp -c "alter database foodapp owner to foodapp;"
-psql -U foodapp -d foodapp -f doc/schema.sql
+psql -U foodapp -d foodapp -f db/00_schema.sql

@@ -1,1 +1,2 @@
 FROM clojure:onbuild
+ENV DATABASE_URL 172.18.0.2

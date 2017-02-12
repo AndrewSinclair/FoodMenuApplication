@@ -1,3 +1,3 @@
 #!/bin/bash
 
-psql -U foodapp -d foodapp -f doc/import-test-data.sql
+psql -U foodapp -d foodapp -f db/01_import-test-data.sql

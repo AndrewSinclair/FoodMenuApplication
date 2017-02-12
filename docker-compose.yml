@@ -3,7 +3,6 @@
    db:
      image: postgres
      build: db
-     command: ./init-database
    web:
      build: .
      ports:
