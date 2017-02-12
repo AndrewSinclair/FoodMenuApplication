@@ -1,0 +1,15 @@
+ version: '2'
+ services:
+   db:
+     image: postgres
+     build: db
+     command: ./init-database
+   web:
+     build: .
+     ports:
+       - "3000:3000"
+     depends_on:
+       - db
+     links:
+       - db
+     command: ./dev
