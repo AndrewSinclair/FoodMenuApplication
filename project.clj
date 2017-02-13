@@ -9,9 +9,8 @@
                  [ring.middleware.logger "0.5.0"]
                  [org.clojure/java.jdbc "0.7.0-alpha1"]
                  [postgresql "9.1-901.jdbc4"]
-                 [me.raynes/conch "0.8.0"]]
-  :plugins [[lein-ring "0.9.7"]
-            [lein-exec "0.3.1"]]
+                 [buddy/buddy-auth "1.4.1"]]
+  :plugins [[lein-ring "0.9.7"]]
   :ring {:handler food-app.handler/app
          :auto-relaod? true
          :reload-paths ["src"]}
