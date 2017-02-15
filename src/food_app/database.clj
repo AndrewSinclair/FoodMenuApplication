@@ -2,7 +2,7 @@
   (:require [clojure.java.jdbc :refer :all]))
 
 
-(let [db-host (or (System/getenv "DATABASE_URL") ;"172.18.0.2"
+(let [db-host (or (System/getenv "DATABASE_URL") ; db
                                  "localhost")
       db-port 5432
       db-name "foodapp"]
@@ -17,6 +17,13 @@
 
 (defn get-menu-titles []
   (with-db-connection [c db] 
-     (->>
-       (query c ["select * from menu"])
-       (map :title))))
+    (->>
+      (query c ["select * from menu"])
+      (map :title))))
+
+(defn auth-user [username password]
+  (with-db-connection [c db]
+    (->
+      (query c
+        ["SELECT * FROM user_account WHERE username=? AND password=?" username password])
+      count zero? not)))

@@ -15,10 +15,6 @@
             [buddy.auth.middleware     :refer  [wrap-authentication wrap-authorization]]))
 
 
-;; TODO: this should be from the "user" database
-(def authdata {:admin "secret"
-               :test "secret"})
-
 (def secret "mysupersecret")
 
 (defn ok [d] {:status 200 :body d})
@@ -38,9 +34,7 @@
   [request]
   (let [username (get-in request [:body :username])
         password (get-in request [:body :password])
-        valid? (some-> authdata
-                       (get (keyword username))
-                       (= password))]
+        valid?   (db/auth-user username password)]
     (if valid?
       (let [claims {:user (keyword username)
                     :exp (time/plus (time/now) (time/seconds 3600))}
