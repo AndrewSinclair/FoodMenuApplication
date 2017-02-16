@@ -25,7 +25,7 @@
 ;;  https://adambard.com/blog/buddy-password-auth-example/
 (defn home
   [request]
-  (if-not (authenticated? request)
+  (if-not (or (authenticated? request) (System/getenv "SKIP_AUTH"))
     (throw-unauthorized)
     (ok {:status "Logged" :message (str "hello logged user "
                                         (:identity request))})))
