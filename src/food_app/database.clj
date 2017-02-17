@@ -15,6 +15,11 @@
            :user "foodapp"
            :password "foodapp"}))
 
+(defn get-menus []
+  (with-db-connection [c db] 
+    (->>
+      (query c ["select * from menu"]))))
+
 (defn get-menu-titles []
   (with-db-connection [c db] 
     (->>

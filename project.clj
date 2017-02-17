@@ -5,6 +5,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [compojure "1.5.1"]
                  [ring/ring-defaults "0.2.1"]
+                 [ring-cors "0.1.9"]
                  [ring/ring-json "0.4.0"]
                  [ring.middleware.logger "0.5.0"]
                  [org.clojure/java.jdbc "0.7.0-alpha1"]

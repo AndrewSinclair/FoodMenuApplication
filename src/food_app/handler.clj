@@ -8,12 +8,12 @@
             [ring.middleware.json      :refer  [wrap-json-response wrap-json-body]]
             [ring.middleware.defaults  :refer  [wrap-defaults api-defaults]]
             [ring.util.response        :refer  [response]]
+            [ring.middleware.cors      :refer   [wrap-cors]]
             [clj-time.core             :as     time]
             [buddy.sign.jwt            :as     jwt]
             [buddy.auth                :refer  [authenticated? throw-unauthorized]]
             [buddy.auth.backends.token :refer  [jws-backend]]
             [buddy.auth.middleware     :refer  [wrap-authentication wrap-authorization]]))
-
 
 (def secret "mysupersecret")
 
@@ -43,6 +43,9 @@
       (bad-request {:message "wrong auth data"}))))
 
 
+;; (defroutes admin-routes
+;;   (GET "/" [] get-admin))
+
 (defroutes app-routes
   (GET "/" []
     home)
@@ -51,7 +54,11 @@
     login)
 
   (GET "/menus" []
-    (db/get-menu-titles))
+    (db/get-menus))
+
+
+  ;; (context "/admin" []
+  ;;   (restrict admin-routes {:handler is-authenticated}))
   
   (route/not-found "Not Found"))
 
@@ -60,6 +67,8 @@
 
 (def app
   (-> app-routes
+    (wrap-cors :access-control-allow-origin [#"http://localhost:\d{4}"]
+               :access-control-allow-methods [:get :put :post :delete])
     (wrap-authorization auth-backend)
     (wrap-authentication auth-backend)
     wrap-with-logger
