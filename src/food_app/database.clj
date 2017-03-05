@@ -1,5 +1,6 @@
 (ns food-app.database
-  (:require [clojure.java.jdbc :refer :all]))
+  (:require [clojure.java.jdbc :refer :all]
+            [digest :as digest]))
 
 
 (let [db-host (or (System/getenv "DATABASE_URL") ; db
@@ -26,9 +27,14 @@
       (query c ["select * from menu"])
       (map :title))))
 
+(defn -authorize-password
+  [{db-sha :hs512_password salt :salt} password]
+  (= (digest/sha-512 (str salt password)) db-sha))
+
 (defn auth-user [username password]
   (with-db-connection [c db]
     (->
       (query c
-        ["SELECT * FROM user_account WHERE username=? AND password=?" username password])
-      count zero? not)))
+        ["SELECT hs512_password, salt FROM user_account WHERE username=?" username])
+      first
+      (-authorize-password password))))

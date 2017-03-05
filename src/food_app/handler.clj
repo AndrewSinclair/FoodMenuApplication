@@ -8,7 +8,7 @@
             [ring.middleware.json      :refer  [wrap-json-response wrap-json-body]]
             [ring.middleware.defaults  :refer  [wrap-defaults api-defaults]]
             [ring.util.response        :refer  [response]]
-            [ring.middleware.cors      :refer   [wrap-cors]]
+            [ring.middleware.cors      :refer  [wrap-cors]]
             [clj-time.core             :as     time]
             [buddy.sign.jwt            :as     jwt]
             [buddy.auth                :refer  [authenticated? throw-unauthorized]]

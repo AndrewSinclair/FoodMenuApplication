@@ -10,6 +10,7 @@
                  [ring.middleware.logger "0.5.0"]
                  [org.clojure/java.jdbc "0.7.0-alpha1"]
                  [postgresql "9.1-901.jdbc4"]
+                 [digest "1.4.5"]
                  [buddy/buddy-auth "1.4.1"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler food-app.handler/app
