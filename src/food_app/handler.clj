@@ -42,7 +42,6 @@
         (ok {:token token}))
       (bad-request {:message "wrong auth data"}))))
 
-
 ;; (defroutes admin-routes
 ;;   (GET "/" [] get-admin))
 
