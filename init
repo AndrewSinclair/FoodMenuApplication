@@ -1,8 +1,9 @@
 #!/bin/bash
 
 #postgres setup
-dropdb foodapp
+dropdb --if-exists foodapp
 createdb foodapp
-psql -d foodapp -c "create user foodapp with password 'foodapp';"
+psql -d foodapp -c "drop role if exists foodapp; create role foodapp login
+password 'foodapp'";
 psql -d foodapp -c "alter database foodapp owner to foodapp;"
-psql -U foodapp -d foodapp -f db/00_schema.sql
+PGPASSWORD=foodapp psql -U foodapp -d foodapp -f db/00_schema.sql
